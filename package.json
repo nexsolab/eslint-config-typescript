@@ -1,0 +1,45 @@
+{
+  "name": "eslint-config-typescript",
+  "version": "1.0.0",
+  "description": "Nexso ESLint configuration for Typescript",
+  "main": "index.js",
+  "scripts": {
+    "publish": "npm publish --access=public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nexsolab/eslint-config-typescript.git"
+  },
+  "keywords": [
+    "eslintconfig",
+    "eslint",
+    "lint",
+    "code",
+    "style",
+    "development",
+    "tool",
+    "dev",
+    "airbnb",
+    "es6",
+    "es2015",
+    "es2016",
+    "es2017",
+    "es2018",
+    "es2020",
+    "es2021",
+    "typescript"
+  ],
+  "peerDependencies": {
+    "@nexso/eslint-config": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-typescript": "^14.0.0"
+  },
+  "author": "Caio Eduardo <souza.caioeduardo@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nexsolab/eslint-config-typescript/issues"
+  },
+  "homepage": "https://github.com/nexsolab/eslint-config-typescript#readme"
+}
