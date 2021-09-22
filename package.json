@@ -1,6 +1,6 @@
 {
   "name": "@nexsolab/eslint-config-typescript",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Nexso ESLint configuration for Typescript",
   "main": "index.js",
   "scripts": {
@@ -36,9 +36,9 @@
     "@nexso/eslint-config": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
+    "ansi-regex": ">=6.0.1",
     "eslint": "^7.32.0",
-    "eslint-config-airbnb-typescript": "^14.0.0",
-    "ansi-regex": ">=6.0.1"
+    "eslint-config-airbnb-typescript": "^14.0.0"
   },
   "author": "Caio Eduardo <souza.caioeduardo@gmail.com>",
   "license": "MIT",
