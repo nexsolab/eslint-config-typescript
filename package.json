@@ -1,6 +1,6 @@
 {
   "name": "@nexso/eslint-config-typescript",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Nexso ESLint configuration for Typescript",
   "main": "index.js",
   "scripts": {
@@ -44,5 +44,6 @@
   "bugs": {
     "url": "https://github.com/nexsolab/eslint-config-typescript/issues"
   },
-  "homepage": "https://github.com/nexsolab/eslint-config-typescript#readme"
+  "homepage": "https://github.com/nexsolab/eslint-config-typescript#readme",
+  "devDependencies": {}
 }
