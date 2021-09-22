@@ -1,6 +1,6 @@
 {
-  "name": "@nexso/eslint-config-typescript",
-  "version": "1.1.0",
+  "name": "@nexsolab/eslint-config-typescript",
+  "version": "1.1.1",
   "description": "Nexso ESLint configuration for Typescript",
   "main": "index.js",
   "scripts": {
