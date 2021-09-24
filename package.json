@@ -3,14 +3,12 @@
   "version": "1.0.1",
   "description": "Nexso ESLint configuration for Typescript",
   "main": "index.js",
-  "scripts": {
-    "publish": "npm publish --access=public"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nexsolab/eslint-config-typescript.git"
   },
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org"
   },
   "keywords": [
