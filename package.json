@@ -6,9 +6,6 @@
   "scripts": {
     "publish": "npm publish --access=public"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nexsolab/eslint-config-typescript.git"
