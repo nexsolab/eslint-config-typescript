@@ -60,7 +60,11 @@ jobs:
       - name: Install an OIDC-capable npm CLI
         run: npm install --global npm@11
 
-      - name: Install dependencies
+      - name: Install base config dependencies
+        working-directory: eslint-config
+        run: npm ci
+
+      - name: Install TypeScript config dependencies
         run: npm ci
 
       - name: Apply safe security updates

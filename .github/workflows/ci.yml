@@ -51,7 +51,11 @@ jobs:
           cache: npm
           cache-dependency-path: eslint-config-typescript/package-lock.json
 
-      - name: Install dependencies
+      - name: Install base config dependencies
+        working-directory: eslint-config
+        run: npm ci
+
+      - name: Install TypeScript config dependencies
         run: npm ci
 
       - name: Run tests
