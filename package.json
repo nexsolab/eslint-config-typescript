@@ -1,8 +1,21 @@
 {
+  "type": "module",
   "name": "@nexso/eslint-config-typescript",
-  "version": "1.0.2",
-  "description": "Nexso ESLint configuration for Typescript",
+  "version": "2.0.0",
+  "description": "Nexso Flat Config for TypeScript projects using ESLint 10",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node ./index.test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nexsolab/eslint-config-typescript.git"
@@ -12,37 +25,33 @@
     "registry": "https://registry.npmjs.org"
   },
   "keywords": [
-    "eslintconfig",
     "eslint",
-    "lint",
-    "code",
-    "style",
-    "development",
-    "tool",
-    "dev",
-    "airbnb",
-    "es6",
-    "es2015",
-    "es2016",
-    "es2017",
-    "es2018",
-    "es2020",
-    "es2021",
-    "typescript"
+    "eslintconfig",
+    "flat-config",
+    "typescript",
+    "nuxt",
+    "vue"
   ],
   "dependencies": {
-    "@nexso/eslint-config": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.29.3",
-    "@typescript-eslint/parser": "^4.29.3",
-    "ansi-regex": ">=6.0.1",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-typescript": "^14.0.0"
+    "typescript-eslint": "^8.64.0"
+  },
+  "devDependencies": {
+    "@nexso/eslint-config": "file:../eslint-config",
+    "eslint": "^10.7.0",
+    "typescript": "^6.0.3"
+  },
+  "peerDependencies": {
+    "@nexso/eslint-config": "^3.0.0",
+    "eslint": "^10.7.0",
+    "typescript": ">=5.0.0 <6.1.0"
+  },
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
   },
   "author": "Caio Eduardo <souza.caioeduardo@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/nexsolab/eslint-config-typescript/issues"
   },
-  "homepage": "https://github.com/nexsolab/eslint-config-typescript#readme",
-  "devDependencies": {}
+  "homepage": "https://github.com/nexsolab/eslint-config-typescript#readme"
 }
