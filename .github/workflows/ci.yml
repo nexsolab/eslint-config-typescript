@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Node.js ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - 20.19.0
+          - 22.14.0
+          - 24.x
+
+    defaults:
+      run:
+        working-directory: eslint-config-typescript
+
+    steps:
+      - name: Checkout TypeScript config
+        uses: actions/checkout@v6
+        with:
+          path: eslint-config-typescript
+
+      - name: Checkout base config
+        uses: actions/checkout@v6
+        with:
+          repository: nexsolab/eslint-config
+          path: eslint-config
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+          cache-dependency-path: eslint-config-typescript/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Validate package contents
+        run: npm pack --dry-run

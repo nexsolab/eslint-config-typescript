@@ -20,3 +20,7 @@ All notable changes to this project are documented in this file.
   `@nuxt/eslint`, including de-duplicated core/TypeScript rules in Vue SFCs.
 - Add executable tests for TypeScript parsing, recommended rules, and
   de-duplicated core/plugin rules.
+- Replace the Azure Pipelines release with GitHub Actions CI and OIDC-based npm
+  Trusted Publishing.
+- Add weekly safe `npm audit fix` maintenance with automatic patch releases
+  when dependency security updates pass all validations.
