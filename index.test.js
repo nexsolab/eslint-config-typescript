@@ -35,4 +35,15 @@ assert(!result.messages.some(({ fatal }) => fatal), 'TypeScript must parse witho
 assert(ruleIds.includes('@typescript-eslint/no-explicit-any'));
 assert(ruleIds.includes('@typescript-eslint/no-unused-vars'));
 
-console.log('ESLint 10 TypeScript Flat Config tests passed.');
+for (const preset of [config, nuxt, typeChecked]) {
+  const presetEslint = new ESLint({ overrideConfigFile: true, overrideConfig: preset });
+  const [manifest] = await presetEslint.lintText('{"private":true}', {
+    filePath: 'packages/example/package.json',
+  });
+
+  assert(!manifest.messages.some(({ fatal }) => fatal), 'JSON must not use the TypeScript parser');
+  assert(manifest.messages.some(({ ruleId }) => ruleId === 'package-json/require-name'));
+  assert(manifest.messages.some(({ ruleId }) => ruleId === 'package-json/require-version'));
+}
+
+console.log('ESLint 10 TypeScript Flat Config and inherited package.json tests passed.');

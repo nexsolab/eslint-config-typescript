@@ -3,10 +3,12 @@
 Nexso's ESLint 10 Flat Config for TypeScript. It extends
 `@nexso/eslint-config`, so JavaScript and TypeScript files share the same
 security, import, Node.js, stylistic, and ordering conventions.
+It also inherits validation and automatic fixes for `**/package.json` from the
+base config, without another plugin dependency.
 
 ## Requirements
 
-- Node.js `^20.19.0 || ^22.13.0 || >=24`
+- Node.js `^22.22.2 || >=24.15.0`
 - ESLint `^10.7.0`
 - TypeScript `>=5.0.0 <6.1.0`
 
