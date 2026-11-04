@@ -4,10 +4,10 @@ import { ESLint } from 'eslint';
 
 import config, { nuxt, typeChecked } from './index.js';
 
-assert(Array.isArray(config));
-assert(Array.isArray(nuxt));
-assert(Array.isArray(typeChecked));
-assert(config.every(({ name }) => typeof name === 'string'));
+assert.ok(Array.isArray(config));
+assert.ok(Array.isArray(nuxt));
+assert.ok(Array.isArray(typeChecked));
+assert.ok(config.every(({ name }) => typeof name === 'string'));
 
 const eslint = new ESLint({
   overrideConfigFile: true,
@@ -31,9 +31,9 @@ const [result] = await eslint.lintText('const value: any = 1;\n', {
 });
 const ruleIds = result.messages.map(({ ruleId }) => ruleId);
 
-assert(!result.messages.some(({ fatal }) => fatal), 'TypeScript must parse without fatal errors');
-assert(ruleIds.includes('@typescript-eslint/no-explicit-any'));
-assert(ruleIds.includes('@typescript-eslint/no-unused-vars'));
+assert.ok(!result.messages.some(({ fatal }) => fatal), 'TypeScript must parse without fatal errors');
+assert.ok(ruleIds.includes('@typescript-eslint/no-explicit-any'));
+assert.ok(ruleIds.includes('@typescript-eslint/no-unused-vars'));
 
 for (const preset of [config, nuxt, typeChecked]) {
   const presetEslint = new ESLint({ overrideConfigFile: true, overrideConfig: preset });
@@ -41,9 +41,31 @@ for (const preset of [config, nuxt, typeChecked]) {
     filePath: 'packages/example/package.json',
   });
 
-  assert(!manifest.messages.some(({ fatal }) => fatal), 'JSON must not use the TypeScript parser');
-  assert(manifest.messages.some(({ ruleId }) => ruleId === 'package-json/require-name'));
-  assert(manifest.messages.some(({ ruleId }) => ruleId === 'package-json/require-version'));
+  assert.ok(!manifest.messages.some(({ fatal }) => fatal), 'JSON must not use the TypeScript parser');
+  assert.ok(manifest.messages.some(({ ruleId }) => ruleId === 'package-json/require-name'));
+  assert.ok(manifest.messages.some(({ ruleId }) => ruleId === 'package-json/require-version'));
+
+  const testConfig = await presetEslint.calculateConfigForFile('example.test.ts');
+
+  assert.equal(testConfig.rules['node-test/no-only-test'][0], 2);
+  assert.equal(testConfig.rules['node-test/no-sleep-in-test'][0], 2);
+  assert.equal(testConfig.rules['node-test/require-top-level-describe'][0], 2);
+  assert.equal(testConfig.rules['@typescript-eslint/no-unused-vars'][0], 2);
+  assert.equal((await presetEslint.calculateConfigForFile('package.json'))
+    .rules['node-test/no-only-test'], undefined);
 }
 
-console.log('ESLint 10 TypeScript Flat Config and inherited package.json tests passed.');
+const [nodeTestResult] = await eslint.lintText(`
+import { it } from 'node:test';
+
+it.only('checks typed values', t => {
+  const value: number = 2;
+  t.assert.equal(value, 2);
+});
+`, { filePath: 'example.test.ts' });
+
+assert.ok(!nodeTestResult.messages.some(({ fatal }) => fatal), 'node:test must support TypeScript');
+assert.ok(nodeTestResult.messages.some(({ ruleId }) => ruleId === 'node-test/no-only-test'));
+assert.ok(nodeTestResult.messages.some(({ ruleId }) => ruleId === 'node-test/require-top-level-describe'));
+
+console.log('ESLint 10 TypeScript, inherited package.json, and node:test integration tests passed.');

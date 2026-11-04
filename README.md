@@ -5,6 +5,10 @@ Nexso's ESLint 10 Flat Config for TypeScript. It extends
 security, import, Node.js, stylistic, and ordering conventions.
 It also inherits validation and automatic fixes for `**/package.json` from the
 base config, without another plugin dependency.
+All presets also inherit `node-test/recommended` and the base config's additional
+`node:test` rules for JavaScript and TypeScript tests, without installing another
+plugin. Use `*.test.ts` (or the corresponding JavaScript/TypeScript extension),
+with a top-level `describe` and `it` inside suites.
 
 ## Requirements
 
