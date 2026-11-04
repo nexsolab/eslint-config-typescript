@@ -1,7 +1,5 @@
 import assert from 'node:assert/strict';
-
 import { ESLint } from 'eslint';
-
 import config, { nuxt, typeChecked } from './index.js';
 
 assert.ok(Array.isArray(config));
