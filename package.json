@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@nexso/eslint-config-typescript",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Nexso Flat Config for TypeScript projects using ESLint 10",
   "main": "index.js",
   "exports": {
